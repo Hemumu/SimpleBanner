@@ -1,4 +1,4 @@
-package com.helin.simplebanner.view;
+package com.helin.bannerview.view;
 
 import android.content.Context;
 import android.view.animation.Interpolator;

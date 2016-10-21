@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.helin.simplebanner.view.SimpleViewPage
+        <com.helin.bannerview.view.SimpleViewPage
             android:id="@+id/cbLoopViewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

@@ -1,4 +1,4 @@
-package com.helin.simplebanner.view;
+package com.helin.bannerview.view;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -6,8 +6,9 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
-import com.helin.simplebanner.adapter.SimplePageAdapter;
-import com.helin.simplebanner.listener.OnItemClickListener;
+import com.helin.bannerview.adapter.SimplePageAdapter;
+import com.helin.bannerview.listener.OnItemClickListener;
+
 
 /**
  * Created by helin on 2016/10/19 16:23.

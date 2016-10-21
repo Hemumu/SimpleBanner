@@ -1,4 +1,4 @@
-package com.helin.simplebanner.holder;
+package com.helin.bannerview.holder;
 
 /**
  * Created by helin on 2016/10/20 14:30.

@@ -1,13 +1,13 @@
-package com.helin.simplebanner.adapter;
+package com.helin.bannerview.adapter;
 
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.helin.simplebanner.R;
-import com.helin.simplebanner.holder.SimpleHolder;
-import com.helin.simplebanner.holder.SimpleHolderCreator;
-import com.helin.simplebanner.view.SimpleViewPage;
+import com.helin.bannerview.R;
+import com.helin.bannerview.holder.SimpleHolder;
+import com.helin.bannerview.holder.SimpleHolderCreator;
+import com.helin.bannerview.view.SimpleViewPage;
 
 import java.util.List;
 
@@ -30,7 +30,11 @@ public class SimplePageAdapter<T> extends PagerAdapter {
         mDatas=data;
     }
 
-
+    /**
+     *当所示页面中的更改已完成时调用。 此时，必须确保所有页面都已实际添加或从容器中删除。
+     * 根据当前item设置实际的item实现无限循环
+     * @param container
+     */
     @Override
     public void finishUpdate(ViewGroup container) {
         int position = viewPager.getCurrentItem();

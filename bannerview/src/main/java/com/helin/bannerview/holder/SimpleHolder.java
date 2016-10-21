@@ -1,4 +1,4 @@
-package com.helin.simplebanner.holder;
+package com.helin.bannerview.holder;
 
 import android.content.Context;
 import android.view.View;
@@ -20,5 +20,5 @@ public interface SimpleHolder<T> {
      * @param position
      * @param data
      */
-    void UpdateUI(Context context,int position,T data);
+    void UpdateUI(Context context, int position, T data);
 }
