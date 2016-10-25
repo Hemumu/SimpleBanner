@@ -20,8 +20,14 @@ public class SimplePageAdapter<T> extends PagerAdapter {
      * page数据
      */
     private final List<T> mDatas;
+    /**
+     * 翻页最大量
+     */
     private final int MULTIPLE_COUNT = 300;
     private final SimpleHolderCreator holderCreator;
+    /**
+     * 是否循环翻页
+     */
     private boolean canLoop =true;
     private SimpleViewPage viewPager;
 
@@ -48,11 +54,20 @@ public class SimplePageAdapter<T> extends PagerAdapter {
         }catch (IllegalStateException e){}
     }
 
+
+    /**
+     * 设置Count为getRealCount()*MULTIPLE_COUNT
+     * @return
+     */
     @Override
     public int getCount() {
         return canLoop ? getRealCount()*MULTIPLE_COUNT : getRealCount();
     }
 
+    /**
+     * 获取实际的翻页数量
+     * @return
+     */
     public int getRealCount() {
         return mDatas == null ? 0 : mDatas.size();
     }
@@ -69,11 +84,15 @@ public class SimplePageAdapter<T> extends PagerAdapter {
         int realPosition = toRealPosition(position);
 
         View view = getView(realPosition, null, container);
-//        if(onItemClickListener != null) view.setOnClickListener(onItemClickListener);
         container.addView(view);
         return view;
     }
 
+    /**
+     * 获取真实的position
+     * @param position
+     * @return
+     */
     public int toRealPosition(int position) {
         int realCount = getRealCount();
         if (realCount == 0)

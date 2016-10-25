@@ -16,10 +16,22 @@ import com.helin.bannerview.listener.OnItemClickListener;
 public class SimpleViewPage extends ViewPager {
     private OnPageChangeListener mOuterPageChangeListener;
     private SimplePageAdapter mAdapter;
+    /**
+     * item点击事件
+     */
     private OnItemClickListener onItemClickListener;
+    /**
+     * 是否循环翻页
+     */
     private boolean canLoop = true;
+    /**
+     * 是否可以手动翻页
+     */
     private boolean isCanScroll = true;
     private float oldX = 0, newX = 0;
+    /**
+     * 手指点击的偏移距离
+     */
     private static final float sens = 5;
     public SimpleViewPage(Context context) {
         super(context);
@@ -31,10 +43,17 @@ public class SimpleViewPage extends ViewPager {
         init();
     }
 
+    /**
+     * 获取最后一个postion
+     * @return
+     */
     public int getLastItem() {
         return mAdapter.getRealCount() - 1;
     }
 
+    /**
+     * 初始化添加PageChange事件
+     */
     private void init() {
         super.addOnPageChangeListener(onPageChangeListener);
     }
@@ -43,9 +62,11 @@ public class SimpleViewPage extends ViewPager {
         private float mPreviousPosition = -1;
         @Override
         public void onPageSelected(int position) {
+            //转化为真实的Postiin
             int realPosition = mAdapter.toRealPosition(position);
             if (mPreviousPosition != realPosition) {
                 mPreviousPosition = realPosition;
+                //如果设置了PageChangeListener就调用onPageSelected方法
                 if (mOuterPageChangeListener != null) {
                     mOuterPageChangeListener.onPageSelected(realPosition);
                 }
@@ -57,6 +78,7 @@ public class SimpleViewPage extends ViewPager {
                                    int positionOffsetPixels) {
             int realPosition = position;
             if (mOuterPageChangeListener != null) {
+                //如果postion不是最后一个直接回调
                 if (realPosition != mAdapter.getRealCount() - 1) {
                     mOuterPageChangeListener.onPageScrolled(realPosition,
                             positionOffset, positionOffsetPixels);
@@ -79,6 +101,11 @@ public class SimpleViewPage extends ViewPager {
         }
     };
 
+    /**
+     * 触摸事件
+     * @param ev
+     * @return
+     */
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         if (isCanScroll) {
@@ -109,6 +136,12 @@ public class SimpleViewPage extends ViewPager {
     public void setCanScroll(boolean isCanScroll) {
         this.isCanScroll = isCanScroll;
     }
+
+    /**
+     * 事件拦截
+     * @param ev
+     * @return
+     */
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         if (isCanScroll)
@@ -117,12 +150,17 @@ public class SimpleViewPage extends ViewPager {
             return false;
     }
 
+    /**
+     * 设置适配器
+     * @param adapter
+     * @param canLoop
+     */
     public void setAdapter(PagerAdapter adapter, boolean canLoop) {
         mAdapter = (SimplePageAdapter) adapter;
         mAdapter.setCanLoop(canLoop);
         mAdapter.setViewPager(this);
         super.setAdapter(mAdapter);
-
+        //设置当前的Item为页面的数量
         setCurrentItem(getFristItem(), false);
     }
 
@@ -130,6 +168,10 @@ public class SimpleViewPage extends ViewPager {
         return canLoop;
     }
 
+    /**
+     * 设置是否循环翻页
+     * @param canLoop
+     */
     public void setCanLoop(boolean canLoop) {
         this.canLoop = canLoop;
         if (!canLoop) {
@@ -165,6 +207,10 @@ public class SimpleViewPage extends ViewPager {
         mOuterPageChangeListener = listener;
     }
 
+    /**
+     * 设置单击事件
+     * @param onItemClickListener
+     */
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }

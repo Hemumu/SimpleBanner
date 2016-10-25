@@ -15,7 +15,6 @@
             android:layout_height="match_parent" />
 
         <!-- 翻页指示点的viewgroup -->
-
         <LinearLayout
             android:id="@+id/loPageTurningPoint"
             android:layout_width="wrap_content"

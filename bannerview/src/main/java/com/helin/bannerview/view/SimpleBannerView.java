@@ -36,13 +36,40 @@ public class SimpleBannerView<T> extends LinearLayout{
      * 翻页指示点
      */
     private ViewGroup loPageTurningPoint;
+    /**
+     * 指示点图片数组
+     */
     private ArrayList<ImageView> mPointViews = new ArrayList<ImageView>();
     private ViewPager.OnPageChangeListener onPageChangeListener;
+    /**
+     * Viewpage Adapter
+     */
     private SimplePageAdapter mAdapter;
+    /**
+     * 数据
+     */
     private List<T> mDatas;
+
+    /**
+     * 是否自动翻页
+     */
     private boolean canTurn = false;
+    /**
+     * 翻页间隔时间
+     */
     private long autoTurningTime;
+    /**
+     * 当前是否正在翻页
+     */
     private boolean turning;
+
+    /**
+     * 是否循环翻页
+     */
+    private boolean canLoop = true;
+    /**
+     * 翻页指示点的位置
+     */
     public enum PageIndicatorAlign{
         ALIGN_PARENT_LEFT,ALIGN_PARENT_RIGHT,CENTER_HORIZONTAL
     }
@@ -137,6 +164,9 @@ public class SimpleBannerView<T> extends LinearLayout{
         return this;
     }
 
+    /**
+     * 停止自动翻页
+     */
     public void stopTurning() {
         turning = false;
         removeCallbacks(adSwitchTask);
@@ -163,7 +193,7 @@ public class SimpleBannerView<T> extends LinearLayout{
                 pointView.setImageResource(page_indicatorId[0]);
             mPointViews.add(pointView);
             loPageTurningPoint.addView(pointView);
-        }
+    }
         pageChangeListener = new SimplePageChangeListener(mPointViews,
                 page_indicatorId);
         viewPager.addOnPageChangeListener(pageChangeListener);
@@ -197,7 +227,7 @@ public class SimpleBannerView<T> extends LinearLayout{
     }
 
 
-    private boolean canLoop = true;
+
 
     /**
      * 设置翻页数据

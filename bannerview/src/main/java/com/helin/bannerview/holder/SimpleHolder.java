@@ -6,7 +6,7 @@ import android.view.View;
 /**
  * Created by helin on 2016/10/20 11:37.
  */
-public interface SimpleHolder<T> {
+public interface SimpleHolder<T>{
     /**
      * 创建view
      * @param context
